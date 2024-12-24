@@ -5,7 +5,7 @@ from db.engine import engine, Base
 
 
 app = FastAPI()
-@app.get('/')
+@app.get('/l;kl')
 
 @app.lifespan
 async def lifespan(app: FastAPI):
