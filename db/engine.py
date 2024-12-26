@@ -1,26 +1,26 @@
 # connection
-from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
-from sqlalchemy.orm import DeclarativeBase, MappedAsDataclass
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
-SQLALCHAMY_DATABASE_URL = "postgresql+asyncpg://postgres:mahi-h82@localhost/DrYar"
+SQLALCHAMY_DATABASE_URL = "postgresql://postgres:mahi-h82@localhost:5432/DrYar"
 
 
-engine = create_async_engine(SQLALCHAMY_DATABASE_URL,echo=0)
 
-SessionLocal = async_sessionmaker(
+engine = create_engine(SQLALCHAMY_DATABASE_URL)
+
+SessionLocal = sessionmaker(
     bind=engine,
     autocommit=False,
-    autoflush=False,
-    expire_on_commit=False,
+    autoflush=False
 )
 
-class Base(DeclarativeBase, MappedAsDataclass):
-    pass
+Base = declarative_base()
 
 
-async def get_db():
+def get_db():
     db = SessionLocal()
     try:
         yield db
     finally:
-        await db.close()
+        db.close()

@@ -6,4 +6,4 @@ __all__ = [
     "User",
 ]
 
-Base.metadata.create_all(bind=engine)
+#Base.metadata.create_all(bind=engine)

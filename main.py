@@ -1,11 +1,14 @@
-from fastapi import FastAPI
+from fastapi import FastAPI ,Query
 from router.user import user_router 
 from db.engine import engine, Base
 
 
 
 app = FastAPI()
-@app.get('/l;kl')
+@app.get('/{id}')
+async def salam(id:int ,comment:str):
+    return {"im;j;kd":id}
+
 
 @app.lifespan
 async def lifespan(app: FastAPI):
