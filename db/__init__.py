@@ -1,9 +1,9 @@
 from .engine import Base
-from .models import User
+from .models import USERS
 
 __all__ = [
     "Base",
-    "User",
+    "USERS",
 ]
 
 #Base.metadata.create_all(bind=engine)
