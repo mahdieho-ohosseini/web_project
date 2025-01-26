@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from datetime import datetime, timedelta, date
 from typing import Annotated, List
 from fastapi import FastAPI, Depends, HTTPException,status, Header , status
@@ -433,3 +434,21 @@ def update_doctor_profile(
     db.commit()
     db.refresh(doctor)
     return {"message": "Profile updated successfully"}
+=======
+from fastapi import FastAPI
+from router.user import user_router 
+from db.engine import engine, Base
+
+
+
+app = FastAPI()
+
+@app.lifespan
+async def lifespan(app: FastAPI):
+    # رویداد startup
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+
+
+app.include_router(user_router,prefix="/user")
+>>>>>>> c654aed5cb4e471277e496815c6912edc203b038

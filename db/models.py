@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # models of db
 from sqlalchemy import Column, Integer, TEXT, ForeignKey, DATE,String ,TIME ,Enum as SQLAlchemyEnum
 from db.engine import Base
@@ -56,3 +57,16 @@ class APPOINMENT(Base):
     user_id = Column(Integer, ForeignKey('users.user_id'), nullable=False) 
     doctor_id = Column(Integer, ForeignKey('doctors.doctor_id'), nullable=False)  
     explanation =Column(TEXT,nullable=False)
+=======
+# models of db
+from sqlalchemy.orm import Mapped, mapped_column
+from .engine import Base
+
+
+class User(Base):
+    __tablename__ = "users"
+
+    password: Mapped[str] = mapped_column()
+    username: Mapped[str] = mapped_column(unique=True)
+    id: Mapped[int] = mapped_column(primary_key=True)
+>>>>>>> c654aed5cb4e471277e496815c6912edc203b038
